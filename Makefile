@@ -11,7 +11,7 @@ pdf:
 	pdflatex modsim14.tex
 	bibtex modsim14
 	pdflatex modsim14.tex
-	bibtex modsim14
+#	bibtex modsim14
 	pdflatex modsim14.tex
 
 clean:

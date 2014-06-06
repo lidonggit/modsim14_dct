@@ -50,7 +50,9 @@
 
 \begin{document}
 
-\title{Integrated Modeling of Performance, Power and Resilience for Adaptive Parallelism}
+%\title{Integrated Modeling of Performance, Power and Resilience for Adaptive Parallelism}
+\title{\emph{Adaptive Parallelism}: Integrated Performance, \\Power, and Resilience Modeling}
+
 
 \author{Dong Li$^{\dag}$, Edgar Leon$^{\star}$, and Bronis de Supinski$^{\star}$ \\
     $^{\dag}$Oak Ridge National Laboratory and $^{\star}$Lawrence Livermore National Laboratory \\
@@ -61,34 +63,82 @@
 
 \maketitle
 
-\noindent {\Large \textbf{Motivation}}   \\
-The path to exascale presents increased parallelism to reach performance targets with constrained power consumption.
-Meanwhile, efforts to reduce power and increase component counts may lead to significant increase in the number of faults,
-making system resilience a grand challenge for exascale systems. To address challenges of 
-performance, power, and resilience (PPR), modeling methods must evolve and consider
-them in concert. Furthermore, modeling methods must be rapid and accurate, such that
-runtime can effectively enable dynamic evaluation of tradeoffs between PPR.
+\noindent {\Large \textbf{The need for integrated modeling}}\\
+From embedded devices to future exascale computers, the increased
+parallelism in both the number of processing units and nodes will
+create unprecedented challenges to achieve the expected levels of
+application performance, keep power consumption bound within a data
+center's power budget or battery constraints, and maintain a system
+operational in the presence of numerous failures proportional to the
+size of the system. To address these challenges, modeling methods must
+evolve and consider the combined effects of performance, power,
+and resilience (PPR). Furthermore, modeling methods must be rapid and
+accurate to dynamically evaluate the tradeoffs posed by PPR in
+large-scale systems. 
 
-The common practice of current modeling methods employs analytical models or architectural simulators to study PPR.
-The investigations of performance, power, and resilience are isolated based on individual modeling infrastructures
-and methodologies.
-Furthermore, many modeling tools and techniques are heavyweight, and cannot be easily employed at runtime.
-As a result, we do not have any efficient modeling mechanism that directs runtime management 
-and allows us to explore the optimal operating point in the 3D search space of PPR.
+% The path to exascale presents increased parallelism to reach performance targets with constrained power consumption.
+% Meanwhile, efforts to reduce power and increase component counts may lead to significant increase in the number of faults,
+% making system resilience a grand challenge for exascale systems.
+% To address challenges of performance, power, and resilience (PPR),
+% modeling methods must evolve and consider them in
+% concert. Furthermore, modeling methods must be rapid and accurate,
+% such that runtime can effectively enable dynamic evaluation of
+% tradeoffs between PPR. 
 
-In this position paper, we study modeling of PPR based on an integrated %uniform 
-modeling infrastructure. 
-The infrastructure collects utilization information from 
-a common set of hardware components to characterize applications and predict PPR.
-We study our modeling techniques in the context of runtime parallelism management for the OpenMP
-programming model.
-The management and optimization of parallelism is fundamental to meet PPR requirements
-of exascale systems.
-Scientific applications typically have inherent parallelism that varies across execution phases~\cite{nvram_ipdps12}.
-Matching the degree of parallelism (named \textit{parallelism configuration} in the rest of paper) between application and hardware
-have complicated implications on PPR~\cite{mpiopenmp_ipdps10, mpiopenmp_tpds13, dsn_pact08, dsn_ics06}. 
-We aim to use a model-driven approach to decide optimal parallelism based on user-defined policies
-and enable adaptive parallelism at runtime.
+A common practice of current modeling methods is to employ analytical
+models or architectural, highly-accurate simulators. Analytical models
+tend to focus on a specific dimension of performance, power, and
+resilience missing their combined interdependent effects. Highly
+accurate simulators, on the other hand, are not scalable. Furthermore,
+the overhead imposed by many modeling tools is too high to be used at
+runtime. As a result, we need more efficient and unified modeling
+frameworks that would enable a runtime system to find, in real-time, a
+near-optimal operating point of an application in terms of PPR. 
+
+
+% The common practice of current modeling methods employs analytical models or architectural simulators to study PPR.
+% The investigations of performance, power, and resilience are isolated based on individual modeling infrastructures
+% and methodologies.
+% Furthermore, many modeling tools and techniques are heavyweight, and cannot be easily employed at runtime.
+% As a result, we do not have any efficient modeling mechanism that directs runtime management 
+% and allows us to explore the optimal operating point in the 3D search space of PPR.
+
+In this paper, we propose and infrastructure for modeling parallelism
+and its combined effects on performance, power, and
+resilience. Managing and optimizing parallelism dynamically is at the
+core of meeting the challenging requirements of PPR imposed by future 
+systems. The inherent parallelism of scientific applications varies
+across execution phases~\cite{nvram_ipdps12}.  Matching the degree of
+parallelism (\textit{parallel configuration}) between an application and
+hardware have complicated implications on PPR~\cite{mpiopenmp_ipdps10,
+  mpiopenmp_tpds13, dsn_pact08, dsn_ics06}. Our goal is to develop a
+model-driven approach based on hardware resource utilization that
+would allow runtime systems to determine the optimal or near-optimal
+level of parallelism of a given application. 
+
+%  We collect resource utilization information from  
+% a common set of hardware components to characterize applications and
+% predict PPR. 
+
+% We study our modeling techniques in the context of runtime parallelism management for the OpenMP
+% programming model.
+
+
+% In this paper, we propose modeling of PPR based on an integrated %uniform 
+% modeling infrastructure. 
+% The infrastructure collects utilization information from 
+% a common set of hardware components to characterize applications and predict PPR.
+% We study our modeling techniques in the context of runtime parallelism management for the OpenMP
+% programming model.
+% The management and optimization of parallelism is fundamental to meet PPR requirements
+% of exascale systems.
+% Scientific applications typically have inherent parallelism that varies across execution phases~\cite{nvram_ipdps12}.
+% Matching the degree of parallelism (named \textit{parallelism configuration} in the rest of paper) between application and hardware
+% have complicated implications on PPR~\cite{mpiopenmp_ipdps10, mpiopenmp_tpds13, dsn_pact08, dsn_ics06}. 
+% We aim to use a model-driven approach to decide optimal parallelism based on user-defined policies
+% and enable adaptive parallelism at runtime.
+
+%dynamic parallelism is at the core of PPR... 
 
 %Relative order; no absoultely requirement on accuracy.
 %The path to exascale presents increased parallelism with billions of concurrently-executing threads 
@@ -99,7 +149,7 @@ and enable adaptive parallelism at runtime.
 
 \vspace{10pt}
 
-\noindent {\Large \textbf{Our Position}}  \\
+\noindent {\Large \textbf{Adaptive parallelism framework}}  \\
 Our modeling methodology is based on two observations.
 First, performance, power, and resilience have first-order or second-order correlation with hardware components utilization.
 From performance perspective, our work reveals that counting number of accesses to memory hierarchy and counting total
