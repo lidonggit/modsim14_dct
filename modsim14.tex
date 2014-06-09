@@ -54,9 +54,9 @@
 \title{\emph{Adaptive Parallelism}: Integrated Performance, \\Power, and Resilience Modeling}
 
 
-\author{Dong Li$^{\dag}$, Edgar Leon$^{\star}$, and Bronis R. de Supinski$^{\star}$ \\
+\author{Dong Li$^{\dag}$, Edgar A. Le{\'o}n$^{\star}$, and Bronis R. de Supinski$^{\star}$ \\
     $^{\dag}$Oak Ridge National Laboratory and $^{\star}$Lawrence Livermore National Laboratory \\
-    lid1@ornl.gov (main contact), \{leon, bronis\}@llnl.gov	\\
+    lid1@ornl.gov (main contact), \{leon,bronis\}@llnl.gov	\\
 }
 
 \date{}
@@ -201,8 +201,8 @@ to use.
 Based on the above modeling methodology, we can accurately predict PPR
 at runtime for any untested parallelism configuration with low
 overhead. We enable accurate on-line modeling by building the model offline 
-using a diverse set of application characteristics. Usingthe resulting models,
-a runtime system can use high-level policies that indicates the desired levels
+using a diverse set of application characteristics. Using the resulting models,
+a runtime system can use high-level policies that indicate the desired levels
 of performance, power, and resilience. For example, minimizing the
 vulnerability factor at a marginal performance and power cost; and
 achieving the best performance and resilience within a power
@@ -220,10 +220,10 @@ predict performance and power with high accuracy on many-core
 platforms. These results are encouraging and we plan to integrate our
 proposed resiliency model into this framework. Looking forward, future
 milestones include the creation of models for emerging heterogenous
-memory architectures (multiple levels of memory to provide future
-bandwidth and capacity requirements), analyzing the effects of data
-layout and memory parallelism on PPR, and developing new models for
-heterogenous computing platforms.
+memory architectures (multiple levels of memory to provide bandwidth
+and capacity requirements of future systems), analyzing the effects of
+data layout and memory parallelism on PPR, and developing new models
+for heterogenous computing platforms.
 %% BRONIS: The following seems random since we have not discussed
 %% BRONIS: OpenMP prior to this statement.
 %% We will leverage our OpenMP expertise to implement our proposed infrastructure. 
