@@ -158,12 +158,15 @@ various levels of
 parallelism~\cite{mpiopenmp_tpds13, mpiopenmp_ipdps10, dct_pmbs11, dct_iiswc12}. 
 Power consumption is related to hardware usage 
 intensity~\cite{leon:14:characterizing,mpiopenmp_tpds13, powermodel_sigmetrics03, powermodel_micro03}.
-Resilience is related to both application execution time, $t$, and number of 
-hardware accesses, $hwacc$. Given hardware failure rates for specific hardware
+Resilience is related to both application execution time and number of 
+hardware accesses. Given hardware failure rates for specific hardware
 components, longer application execution times and more hardware accesses 
 expose the application to more random occurrences of hardware failures 
 (including both hard and soft errors). We introduce a new metric, the
-\textit{vulnerability factor} (VF), which is defined as $VF = t*hwacc$, 
+\textit{vulnerability factor} (VF), which is defined as a function of 
+execution time, number of hardware accesses driven by application characteristics,
+and component failure rate,
+%$VF = t*hwacc$, 
 to quantify application vulnerability. Thus, resilience,
 like performance and power, is related to hardware component utilization.
 
@@ -355,7 +358,7 @@ Key milestones include developing models of resilience and memory-level
 parallelism and investigating their interactions with other 
 objectives such as power and performance. In addition, we need to
 investigate the accuracy and overhead of our modeling methodology on a
-variety of hardware  resources including homogenous and heterogenous
+variety of hardware  resources including homogenous and heterogeneous
 processor architectures, and emerging heterogeneous memory architectures
 (multi-level memories). 
 
